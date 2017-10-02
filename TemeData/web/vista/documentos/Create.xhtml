@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocumentosCreateDlg" widgetVar="DocumentosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateDocumentosTitle}">
+            <h:form id="DocumentosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{documentosController.selected != null}">
+                        <p:outputLabel value="#{vista.CreateDocumentosLabel_codDocs}" for="codDocs" />
+                        <p:inputText id="codDocs" value="#{documentosController.selected.codDocs}" title="#{vista.CreateDocumentosTitle_codDocs}" required="true" requiredMessage="#{vista.CreateDocumentosRequiredMessage_codDocs}"/>
+                        <p:outputLabel value="#{vista.CreateDocumentosLabel_tipDocs}" for="tipDocs" />
+                        <p:inputText id="tipDocs" value="#{documentosController.selected.tipDocs}" title="#{vista.CreateDocumentosTitle_tipDocs}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{documentosController.create}" value="#{vista.Save}" update="display,:DocumentosListForm:datalist,:growl" oncomplete="handleSubmit(args,'DocumentosCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="DocumentosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TramitesCreateDlg" widgetVar="TramitesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateTramitesTitle}">
+            <h:form id="TramitesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tramitesController.selected != null}">
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_codTram}" for="codTram" />
+                        <p:inputText id="codTram" value="#{tramitesController.selected.codTram}" title="#{vista.CreateTramitesTitle_codTram}" required="true" requiredMessage="#{vista.CreateTramitesRequiredMessage_codTram}"/>
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_fechTram}" for="fechTram" />
+                        <p:calendar id="fechTram" pattern="MM/dd/yyyy" value="#{tramitesController.selected.fechTram}" title="#{vista.EditTramitesTitle_fechTram}"  showOn="button"/>
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_estadTram}" for="estadTram" />
+                        <p:inputText id="estadTram" value="#{tramitesController.selected.estadTram}" title="#{vista.CreateTramitesTitle_estadTram}" />
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_rptaTram}" for="rptaTram" />
+                        <p:inputText id="rptaTram" value="#{tramitesController.selected.rptaTram}" title="#{vista.CreateTramitesTitle_rptaTram}" />
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_obserTram}" for="obserTram" />
+                        <p:inputText id="obserTram" value="#{tramitesController.selected.obserTram}" title="#{vista.CreateTramitesTitle_obserTram}" />
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_foliacion}" for="foliacion" />
+                        <p:inputText id="foliacion" value="#{tramitesController.selected.foliacion}" title="#{vista.CreateTramitesTitle_foliacion}" />
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_asuntoTram}" for="asuntoTram" />
+                        <p:inputText id="asuntoTram" value="#{tramitesController.selected.asuntoTram}" title="#{vista.CreateTramitesTitle_asuntoTram}" />
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_codA}" for="codA" />
+                        <p:selectOneMenu id="codA" value="#{tramitesController.selected.codA}" required="true" requiredMessage="#{vista.EditTramitesRequiredMessage_codA}">
+                            <f:selectItems value="#{areasController.itemsAvailableSelectOne}"
+                                           var="codAItem"
+                                           itemValue="#{codAItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_codDocs}" for="codDocs" />
+                        <p:selectOneMenu id="codDocs" value="#{tramitesController.selected.codDocs}" required="true" requiredMessage="#{vista.EditTramitesRequiredMessage_codDocs}">
+                            <f:selectItems value="#{documentosController.itemsAvailableSelectOne}"
+                                           var="codDocsItem"
+                                           itemValue="#{codDocsItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_codEmpre}" for="codEmpre" />
+                        <p:selectOneMenu id="codEmpre" value="#{tramitesController.selected.codEmpre}" required="true" requiredMessage="#{vista.EditTramitesRequiredMessage_codEmpre}">
+                            <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"
+                                           var="codEmpreItem"
+                                           itemValue="#{codEmpreItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.CreateTramitesLabel_codUsu}" for="codUsu" />
+                        <p:selectOneMenu id="codUsu" value="#{tramitesController.selected.codUsu}" required="true" requiredMessage="#{vista.EditTramitesRequiredMessage_codUsu}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="codUsuItem"
+                                           itemValue="#{codUsuItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tramitesController.create}" value="#{vista.Save}" update="display,:TramitesListForm:datalist,:growl" oncomplete="handleSubmit(args,'TramitesCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="TramitesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

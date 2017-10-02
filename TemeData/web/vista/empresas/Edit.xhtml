@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpresasEditDlg" widgetVar="EmpresasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.EditEmpresasTitle}">
+            <h:form id="EmpresasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empresasController.selected != null}">
+                        <p:outputLabel value="#{vista.EditEmpresasLabel_codEmpre}" for="codEmpre" />
+                        <p:inputText id="codEmpre" value="#{empresasController.selected.codEmpre}" title="#{vista.EditEmpresasTitle_codEmpre}" required="true" requiredMessage="#{vista.EditEmpresasRequiredMessage_codEmpre}"/>
+                        <p:outputLabel value="#{vista.EditEmpresasLabel_nomEmpre}" for="nomEmpre" />
+                        <p:inputText id="nomEmpre" value="#{empresasController.selected.nomEmpre}" title="#{vista.EditEmpresasTitle_nomEmpre}" />
+                        <p:outputLabel value="#{vista.EditEmpresasLabel_rucEmpre}" for="rucEmpre" />
+                        <p:inputText id="rucEmpre" value="#{empresasController.selected.rucEmpre}" title="#{vista.EditEmpresasTitle_rucEmpre}" />
+                        <p:outputLabel value="#{vista.EditEmpresasLabel_direcEmpre}" for="direcEmpre" />
+                        <p:inputText id="direcEmpre" value="#{empresasController.selected.direcEmpre}" title="#{vista.EditEmpresasTitle_direcEmpre}" />
+                        <p:outputLabel value="#{vista.EditEmpresasLabel_telEmpre}" for="telEmpre" />
+                        <p:inputText id="telEmpre" value="#{empresasController.selected.telEmpre}" title="#{vista.EditEmpresasTitle_telEmpre}" />
+                        <p:outputLabel value="#{vista.EditEmpresasLabel_codUbig}" for="codUbig" />
+                        <p:selectOneMenu id="codUbig" value="#{empresasController.selected.codUbig}" required="true" requiredMessage="#{vista.EditEmpresasRequiredMessage_codUbig}">
+                            <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
+                            <f:selectItems value="#{ubigeoController.itemsAvailableSelectOne}"
+                                           var="codUbigItem"
+                                           itemValue="#{codUbigItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empresasController.update}" value="#{vista.Save}" update="display,:EmpresasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmpresasEditDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="EmpresasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

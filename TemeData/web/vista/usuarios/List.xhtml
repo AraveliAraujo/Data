@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{vista.ListUsuariosTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="UsuariosListForm">
+                <p:panel header="#{vista.ListUsuariosTitle}">
+                    <p:dataTable id="datalist" value="#{usuariosController.items}" var="item"
+                                 selectionMode="single" selection="#{usuariosController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.codUsu}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_codUsu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codUsu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_dniUsu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dniUsu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_nomUsu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomUsu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_apeUsu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apeUsu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_emailUsu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.emailUsu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_celUsu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.celUsu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_direcUsu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direcUsu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListUsuariosTitle_codUbig}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codUbig}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{vista.Create}" actionListener="#{usuariosController.prepareCreate}" update=":UsuariosCreateForm" oncomplete="PF('UsuariosCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{vista.View}" update=":UsuariosViewForm" oncomplete="PF('UsuariosViewDialog').show()" disabled="#{empty usuariosController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{vista.Edit}" update=":UsuariosEditForm" oncomplete="PF('UsuariosEditDialog').show()" disabled="#{empty usuariosController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{vista.Delete}" actionListener="#{usuariosController.destroy}" update=":growl,datalist" disabled="#{empty usuariosController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

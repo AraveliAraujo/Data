@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosEditDlg" widgetVar="EmpleadosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.EditEmpleadosTitle}">
+            <h:form id="EmpleadosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_codEmp}" for="codEmp" />
+                        <p:inputText id="codEmp" value="#{empleadosController.selected.codEmp}" title="#{vista.EditEmpleadosTitle_codEmp}" required="true" requiredMessage="#{vista.EditEmpleadosRequiredMessage_codEmp}"/>
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_dniEmp}" for="dniEmp" />
+                        <p:inputText id="dniEmp" value="#{empleadosController.selected.dniEmp}" title="#{vista.EditEmpleadosTitle_dniEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_nomEmp}" for="nomEmp" />
+                        <p:inputText id="nomEmp" value="#{empleadosController.selected.nomEmp}" title="#{vista.EditEmpleadosTitle_nomEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_apeEmp}" for="apeEmp" />
+                        <p:inputText id="apeEmp" value="#{empleadosController.selected.apeEmp}" title="#{vista.EditEmpleadosTitle_apeEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_emailEmp}" for="emailEmp" />
+                        <p:inputText id="emailEmp" value="#{empleadosController.selected.emailEmp}" title="#{vista.EditEmpleadosTitle_emailEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_celEmp}" for="celEmp" />
+                        <p:inputText id="celEmp" value="#{empleadosController.selected.celEmp}" title="#{vista.EditEmpleadosTitle_celEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_direcEmp}" for="direcEmp" />
+                        <p:inputText id="direcEmp" value="#{empleadosController.selected.direcEmp}" title="#{vista.EditEmpleadosTitle_direcEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_userEmp}" for="userEmp" />
+                        <p:inputText id="userEmp" value="#{empleadosController.selected.userEmp}" title="#{vista.EditEmpleadosTitle_userEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_pssEmp}" for="pssEmp" />
+                        <p:inputText id="pssEmp" value="#{empleadosController.selected.pssEmp}" title="#{vista.EditEmpleadosTitle_pssEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_levelEmp}" for="levelEmp" />
+                        <p:inputText id="levelEmp" value="#{empleadosController.selected.levelEmp}" title="#{vista.EditEmpleadosTitle_levelEmp}" />
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_codA}" for="codA" />
+                        <p:selectOneMenu id="codA" value="#{empleadosController.selected.codA}" required="true" requiredMessage="#{vista.EditEmpleadosRequiredMessage_codA}">
+                            <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
+                            <f:selectItems value="#{areasController.itemsAvailableSelectOne}"
+                                           var="codAItem"
+                                           itemValue="#{codAItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.EditEmpleadosLabel_codUbig}" for="codUbig" />
+                        <p:selectOneMenu id="codUbig" value="#{empleadosController.selected.codUbig}" required="true" requiredMessage="#{vista.EditEmpleadosRequiredMessage_codUbig}">
+                            <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
+                            <f:selectItems value="#{ubigeoController.itemsAvailableSelectOne}"
+                                           var="codUbigItem"
+                                           itemValue="#{codUbigItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empleadosController.update}" value="#{vista.Save}" update="display,:EmpleadosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmpleadosEditDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="EmpleadosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

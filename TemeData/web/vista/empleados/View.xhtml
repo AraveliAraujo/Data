@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosViewDlg" widgetVar="EmpleadosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.ViewEmpleadosTitle}">
+            <h:form id="EmpleadosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_codEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.codEmp}" title="#{vista.ViewEmpleadosTitle_codEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_dniEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.dniEmp}" title="#{vista.ViewEmpleadosTitle_dniEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_nomEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.nomEmp}" title="#{vista.ViewEmpleadosTitle_nomEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_apeEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.apeEmp}" title="#{vista.ViewEmpleadosTitle_apeEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_emailEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.emailEmp}" title="#{vista.ViewEmpleadosTitle_emailEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_celEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.celEmp}" title="#{vista.ViewEmpleadosTitle_celEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_direcEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.direcEmp}" title="#{vista.ViewEmpleadosTitle_direcEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_userEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.userEmp}" title="#{vista.ViewEmpleadosTitle_userEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_pssEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.pssEmp}" title="#{vista.ViewEmpleadosTitle_pssEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_levelEmp}"/>
+                        <h:outputText value="#{empleadosController.selected.levelEmp}" title="#{vista.ViewEmpleadosTitle_levelEmp}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_codA}"/>
+                        <h:outputText value="#{empleadosController.selected.codA}" title="#{vista.ViewEmpleadosTitle_codA}"/>
+                        <h:outputText value="#{vista.ViewEmpleadosLabel_codUbig}"/>
+                        <h:outputText value="#{empleadosController.selected.codUbig}" title="#{vista.ViewEmpleadosTitle_codUbig}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vista.Close}" onclick="EmpleadosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TramitesViewDlg" widgetVar="TramitesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.ViewTramitesTitle}">
+            <h:form id="TramitesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tramitesController.selected != null}">
+                        <h:outputText value="#{vista.ViewTramitesLabel_codTram}"/>
+                        <h:outputText value="#{tramitesController.selected.codTram}" title="#{vista.ViewTramitesTitle_codTram}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_fechTram}"/>
+                        <h:outputText value="#{tramitesController.selected.fechTram}" title="#{vista.ViewTramitesTitle_fechTram}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{vista.ViewTramitesLabel_estadTram}"/>
+                        <h:outputText value="#{tramitesController.selected.estadTram}" title="#{vista.ViewTramitesTitle_estadTram}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_rptaTram}"/>
+                        <h:outputText value="#{tramitesController.selected.rptaTram}" title="#{vista.ViewTramitesTitle_rptaTram}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_obserTram}"/>
+                        <h:outputText value="#{tramitesController.selected.obserTram}" title="#{vista.ViewTramitesTitle_obserTram}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_foliacion}"/>
+                        <h:outputText value="#{tramitesController.selected.foliacion}" title="#{vista.ViewTramitesTitle_foliacion}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_asuntoTram}"/>
+                        <h:outputText value="#{tramitesController.selected.asuntoTram}" title="#{vista.ViewTramitesTitle_asuntoTram}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_codA}"/>
+                        <h:outputText value="#{tramitesController.selected.codA}" title="#{vista.ViewTramitesTitle_codA}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_codDocs}"/>
+                        <h:outputText value="#{tramitesController.selected.codDocs}" title="#{vista.ViewTramitesTitle_codDocs}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_codEmpre}"/>
+                        <h:outputText value="#{tramitesController.selected.codEmpre}" title="#{vista.ViewTramitesTitle_codEmpre}"/>
+                        <h:outputText value="#{vista.ViewTramitesLabel_codUsu}"/>
+                        <h:outputText value="#{tramitesController.selected.codUsu}" title="#{vista.ViewTramitesTitle_codUsu}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vista.Close}" onclick="TramitesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
